@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Have You? - 대화 카드 게임</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- 웰컴 화면 -->
+    <div id="welcome-screen" class="screen active">
+      <h1 class="logo">Have You?<br><span class="subtitle">우리들의 대화 카드</span></h1>
+      <div class="deck-illustration">
+        <div class="card-deco deco-1"></div>
+        <div class="card-deco deco-2"></div>
+        <div class="card-deco deco-3"></div>
+      </div>
+      <button id="start-btn" class="btn primary-btn">시작하기</button>
+    </div>
+
+    <!-- 게임 플레이 화면 -->
+    <div id="game-screen" class="screen">
+      <header class="game-header">
+        <button id="home-btn" class="header-btn">🏠</button>
+        <span id="card-counter">0번째 대화</span>
+        <button id="reset-btn" class="header-btn">🔄</button>
+      </header>
+
+      <main class="game-main">
+        <div class="deck-container">
+          <div id="card-deck" class="card-deck-stack"></div>
+        </div>
+
+        <div id="card-wrapper" class="card-wrapper">
+          <div id="active-card" class="game-card">
+            <div class="card-face card-front">
+              <span id="card-category" class="card-badge">MBTI</span>
+              <p id="card-text" class="card-content">질문 내용이 여기에 표시됩니다.</p>
+            </div>
+            <div class="card-face card-back"></div>
+          </div>
+        </div>
+
+        <button id="next-btn" class="btn secondary-btn hidden">다음 카드 뽑기 ➔</button>
+      </main>
+    </div>
+
+    <!-- 덱 초기화/리셋 오버레이 알림 -->
+    <div id="reset-overlay" class="overlay hidden">
+      <div class="overlay-content">
+        <span class="overlay-icon">🔄</span>
+        <p>모든 카드를 뽑았습니다!<br>카드를 새로 섞는 중...</p>
+      </div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
