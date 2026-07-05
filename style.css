@@ -1,0 +1,336 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+:root {
+  --bg-primary: #FFF9F2;
+  --text-main: #4A3E3D;
+  --text-muted: #8C7A78;
+  --btn-primary: #FFB5A7;
+  --btn-secondary: #FCD5CE;
+  --shadow-color: rgba(140, 122, 120, 0.15);
+  --border-radius-lg: 24px;
+  --border-radius-sm: 12px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: 'Gowun Dodum', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+#app {
+  width: 100%;
+  max-width: 500px;
+  height: 100%;
+  position: relative;
+  box-shadow: 0 10px 30px var(--shadow-color);
+  background-color: var(--bg-primary);
+}
+
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  flex-direction: column;
+  padding: 30px 20px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.screen.active {
+  display: flex;
+  opacity: 1;
+}
+
+/* 웰컴 화면 스타일 */
+#welcome-screen {
+  justify-content: space-around;
+  align-items: center;
+  background: linear-gradient(135deg, #FFF9F2 0%, #FFE5EC 100%);
+  text-align: center;
+}
+
+.logo {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #FF7B90;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.deck-illustration {
+  position: relative;
+  width: 160px;
+  height: 200px;
+  margin: 40px auto;
+  animation: floatDeck 3s ease-in-out infinite;
+}
+
+.card-deco {
+  position: absolute;
+  width: 130px;
+  height: 180px;
+  border-radius: var(--border-radius-lg);
+  border: 4px solid #FFF;
+  box-shadow: 0 8px 16px var(--shadow-color);
+}
+
+.deco-1 {
+  background-color: #FFD1DC;
+  transform: rotate(-10deg);
+  z-index: 1;
+}
+
+.deco-2 {
+  background-color: #D1F2D9;
+  transform: rotate(5deg);
+  left: 15px;
+  z-index: 2;
+}
+
+.deco-3 {
+  background-color: #FFF5BA;
+  transform: rotate(0deg);
+  left: 30px;
+  z-index: 3;
+}
+
+@keyframes floatDeck {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.btn {
+  font-family: inherit;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 16px 40px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 6px 12px var(--shadow-color);
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.btn:active {
+  transform: scale(0.96);
+  box-shadow: 0 3px 6px var(--shadow-color);
+}
+
+.primary-btn {
+  background-color: var(--btn-primary);
+  color: #FFF;
+}
+
+.secondary-btn {
+  background-color: var(--btn-secondary);
+  color: var(--text-main);
+  margin-top: 20px;
+  align-self: center;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* 게임 메인 화면 스타일 */
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.header-btn:active {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+#card-counter {
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.game-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.deck-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.card-deck-stack {
+  width: 220px;
+  height: 310px;
+  border-radius: var(--border-radius-lg);
+  background: repeating-linear-gradient(
+    45deg,
+    #FCD5CE,
+    #FCD5CE 10px,
+    #FFF 10px,
+    #FFF 20px
+  );
+  border: 6px solid #FFF;
+  box-shadow: 0 12px 24px var(--shadow-color);
+  cursor: pointer;
+  position: relative;
+}
+
+.card-deck-stack::before {
+  content: "탭하여 카드 뽑기";
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  white-space: nowrap;
+}
+
+/* 액티브 카드 뷰 */
+.card-wrapper {
+  perspective: 1000px;
+  width: 100%;
+  max-width: 320px;
+  height: 420px;
+  margin: 0 auto;
+  display: none;
+}
+
+.card-wrapper.visible {
+  display: block;
+}
+
+.game-card {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--border-radius-lg);
+  border: 8px solid #FFF;
+  box-shadow: 0 15px 30px var(--shadow-color);
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: calc(var(--border-radius-lg) - 8px);
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-front {
+  justify-content: space-between;
+}
+
+.card-badge {
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.card-content {
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.6;
+  text-align: center;
+  word-break: keep-all;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-back {
+  background: repeating-linear-gradient(
+    -45deg,
+    #FCD5CE,
+    #FCD5CE 10px,
+    #FFF 10px,
+    #FFF 20px
+  );
+  transform: rotateY(180deg);
+}
+
+/* 오버레이 알림 */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 249, 242, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.overlay-content {
+  text-align: center;
+}
+
+.overlay-icon {
+  font-size: 3rem;
+  display: inline-block;
+  animation: rotateSpin 1.5s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes rotateSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.overlay p {
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
