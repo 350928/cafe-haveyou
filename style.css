@@ -195,6 +195,10 @@ body {
   flex: 1;
 }
 
+.deck-container:has(#card-deck.hidden) {
+  display: none !important;
+}
+
 .card-deck-stack {
   width: 220px;
   height: 310px;
