@@ -6,7 +6,8 @@
 # Usage: task-brief PLAN_FILE TASK_NUMBER [OUTFILE]
 # Default OUTFILE: <repo-root>/.superpowers/sdd/task-<N>-brief.md
 # (per worktree; concurrent runs in the same working tree share it).
-set -euo pipefail
+set -eu
+set -o pipefail
 
 if [ $# -lt 2 ] || [ $# -gt 3 ]; then
   echo "usage: task-brief PLAN_FILE TASK_NUMBER [OUTFILE]" >&2

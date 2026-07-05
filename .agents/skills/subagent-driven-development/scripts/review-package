@@ -7,7 +7,8 @@
 # Usage: review-package BASE HEAD [OUTFILE]
 # Default OUTFILE: <repo-root>/.superpowers/sdd/review-<base7>..<head7>.diff
 # (named per range, so a re-review after fixes gets a distinct fresh file).
-set -euo pipefail
+set -eu
+set -o pipefail
 
 if [ $# -lt 2 ] || [ $# -gt 3 ]; then
   echo "usage: review-package BASE HEAD [OUTFILE]" >&2
