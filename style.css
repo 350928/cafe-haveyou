@@ -23,6 +23,7 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-main);
   height: 100vh;
+  height: 100dvh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,6 +34,7 @@ body {
   width: 100%;
   max-width: 500px;
   height: 100%;
+  height: 100dvh;
   position: relative;
   box-shadow: 0 10px 30px var(--shadow-color);
   background-color: var(--bg-primary);
@@ -46,7 +48,7 @@ body {
   height: 100%;
   display: none;
   flex-direction: column;
-  padding: 30px 20px;
+  padding: 24px 20px calc(48px + env(safe-area-inset-bottom));
   opacity: 0;
   transition: opacity 0.4s ease;
 }
@@ -369,4 +371,75 @@ body {
 @keyframes shineBadge {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.08); }
+}
+
+/* 모바일/짧은 화면을 위한 미디어 쿼리 대응 */
+@media (max-height: 740px) {
+  .screen {
+    padding: 20px 20px calc(36px + env(safe-area-inset-bottom));
+  }
+  .logo {
+    font-size: 2.3rem;
+  }
+  .deck-illustration {
+    width: 140px;
+    height: 175px;
+    margin: 20px auto;
+  }
+  .card-deco {
+    width: 110px;
+    height: 155px;
+  }
+  .card-wrapper {
+    max-width: 290px;
+    height: 370px;
+  }
+  .card-deck-stack {
+    width: 190px;
+    height: 270px;
+  }
+  .btn {
+    padding: 14px 32px;
+    font-size: 1.1rem;
+  }
+  .secondary-btn {
+    margin-top: 15px;
+  }
+}
+
+@media (max-height: 600px) {
+  .screen {
+    padding: 15px 15px calc(24px + env(safe-area-inset-bottom));
+  }
+  .logo {
+    font-size: 1.8rem;
+  }
+  .deck-illustration {
+    width: 110px;
+    height: 140px;
+    margin: 10px auto;
+  }
+  .card-deco {
+    width: 90px;
+    height: 120px;
+  }
+  .card-wrapper {
+    max-width: 250px;
+    height: 310px;
+  }
+  .card-deck-stack {
+    width: 160px;
+    height: 220px;
+  }
+  .btn {
+    padding: 10px 24px;
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+  .secondary-btn {
+    margin-top: 10px;
+  }
+  .game-header {
+    margin-bottom: 10px;
+  }
 }
