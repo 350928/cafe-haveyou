@@ -150,7 +150,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function handleDraw() {
     cardDeck.classList.add('hidden');
+    
+    // 이전에 적용된 애니메이션 클래스 초기화
+    activeCardEl.classList.remove('draw-animation');
+    
+    // 카드를 드로우하고 화면 갱신
     const newCard = gameInstance.drawCard();
+    
+    // 강제 리플로우(Reflow)를 일으켜 애니메이션이 다시 실행되도록 처리
+    void activeCardEl.offsetWidth;
+    
+    activeCardEl.classList.add('draw-animation');
     renderCurrentCard(newCard);
   }
 

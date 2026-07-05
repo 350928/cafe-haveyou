@@ -334,3 +334,22 @@ body {
   font-weight: 600;
   line-height: 1.5;
 }
+
+.game-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.game-card.draw-animation {
+  animation: cardDraw 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+
+@keyframes cardDraw {
+  0% {
+    transform: translateY(150px) scale(0.3) rotate(-15deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
