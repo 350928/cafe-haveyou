@@ -1,8 +1,7 @@
 import assert from 'assert';
 
-console.log("Starting Task 1 logic tests...");
+console.log("Starting Task 2 logic tests...");
 
-// 테스트할 로직 모형 정의
 const mockCards = [
   { id: 1, category: "MBTI", type: "question", content: "질문 1", color: "#FFD1DC" },
   { id: 2, category: "취미", type: "question", content: "질문 2", color: "#D1F2D9" },
@@ -18,8 +17,46 @@ function shuffleDeck(deck) {
   return newDeck;
 }
 
-// 1. 셔플 수량 테스트
-const shuffled = shuffleDeck(mockCards);
-assert.strictEqual(shuffled.length, mockCards.length, "셔플 후 카드 개수가 동일해야 합니다.");
+class GameState {
+  constructor(cards) {
+    this.allCards = cards;
+    this.remainingDeck = [];
+    this.drawnCards = [];
+    this.counter = 0;
+  }
 
-console.log("Task 1 tests passed successfully!");
+  initNewGame() {
+    this.remainingDeck = shuffleDeck(this.allCards);
+    this.drawnCards = [];
+    this.counter = 0;
+  }
+
+  drawCard() {
+    if (this.remainingDeck.length === 0) {
+      return null;
+    }
+    const card = this.remainingDeck.pop();
+    this.drawnCards.push(card);
+    this.counter++;
+    return card;
+  }
+}
+
+// 2. 게임 상태 머신 테스트
+const game = new GameState(mockCards);
+game.initNewGame();
+assert.strictEqual(game.remainingDeck.length, 3);
+assert.strictEqual(game.drawnCards.length, 0);
+
+const c1 = game.drawCard();
+assert.ok(c1);
+assert.strictEqual(game.remainingDeck.length, 2);
+assert.strictEqual(game.drawnCards.length, 1);
+assert.strictEqual(game.counter, 1);
+
+game.drawCard();
+game.drawCard();
+const cNull = game.drawCard();
+assert.strictEqual(cNull, null, "덱이 비었을 때 null을 반환해야 합니다.");
+
+console.log("Task 2 tests passed successfully!");
