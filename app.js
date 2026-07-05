@@ -119,6 +119,13 @@ document.addEventListener('DOMContentLoaded', () => {
     activeCardEl.style.backgroundColor = card.color;
     cardCounter.textContent = `${gameInstance.counter}번째 대화`;
 
+    // 미션 카드 전용 데코레이션 스타일 제어
+    if (card.type === "mission") {
+      activeCardEl.classList.add('mission-style');
+    } else {
+      activeCardEl.classList.remove('mission-style');
+    }
+
     cardWrapper.classList.add('visible');
     nextBtn.classList.remove('hidden');
   }

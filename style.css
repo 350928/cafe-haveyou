@@ -353,3 +353,20 @@ body {
     opacity: 1;
   }
 }
+
+/* 미션 카드를 위한 특별 디자인 정의 */
+.game-card.mission-style {
+  border: 8px solid #FFE3D1;
+  box-shadow: 0 15px 35px rgba(255, 181, 167, 0.4);
+}
+
+.game-card.mission-style .card-badge {
+  background: linear-gradient(135deg, #FFB5A7 0%, #FF85A2 100%);
+  color: #FFF;
+  animation: shineBadge 2s linear infinite;
+}
+
+@keyframes shineBadge {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
